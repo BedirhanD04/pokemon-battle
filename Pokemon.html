@@ -1,0 +1,94 @@
+<<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokémon Battle</title>
+    <link rel="stylesheet" href="Pokemon.css">
+</head>
+<body>
+ 
+ <!--IMG-->  
+<img id="logo" src="foto/logo.png" alt="Pokemon Logo">
+
+<!-- Selection screen comes first so JS can find it when itt loads -->    
+    <div id="selection-screen">
+        <h1>Pokémon Battle</h1>
+        <p>Choose your Pokémon!</p>
+        
+        <div id="selection-inputs">
+            <!-- Player chooses their own Pokemon -->
+            <div class="selection-box">
+                <label>Your Pokémon:</label>
+                <input type="text" id="player-input" placeholder="e.g. pikachu" value="charmander">
+            </div>
+            <!-- Player chooses the enemy Pokemon -->
+            <div class="selection-box">
+                <label>Enemy Pokémon:</label>
+                <input type="text" id="enemy-input" placeholder="e.g. bulbasaur" value="squirtle">
+            </div>
+        </div>
+        
+        <!-- Button to start the battle -->
+        <button id="start-btn">START BATTLE!</button>
+        <!-- Error message shown if Pokemon name is invalid -->
+        <p id="error-msg" style="color:red;"></p>
+    </div>
+
+
+
+    <!-- Battle screen comes AFTER selection screen -->
+    <!-- It is hidden by JS until the battle starts -->
+    <div id="battle-screen">
+
+        <!-- Enemy Pokemon area - top of screen -->
+        <div id="enemy-area">
+            <div id="enemy-info">
+                <h2 id="enemy-name">???</h2>
+                <p id="enemy-type">Type: ???</p>
+                <div class="hp-bar-container">
+                    <div class="hp-bar" id="enemy-hp-bar"></div>
+                </div>
+                <p id="enemy-hp-text">HP: ???</p>
+            </div>
+            <img id="enemy-img" src="" alt="Enemy Pokemon">
+        </div>
+
+        <!-- Player Pokemon area - middle of screen -->
+        <div id="player-area">
+            <img id="player-img" src="" alt="Player Pokemon">
+            <div id="player-info">
+                <h2 id="player-name">???</h2>
+                <p id="player-type">Type: ???</p>
+                <div class="hp-bar-container">
+                    <div class="hp-bar" id="player-hp-bar"></div>
+                </div>
+                <p id="player-hp-text">HP: ???</p>
+            </div>
+        </div>
+
+        <!-- Battle panel - black bottom panel with log and buttons -->
+        <div id="battle-panel">
+            <button id="play-again-btn" style="display: none;">PLAY AGAIN</button>
+            <div id="battle-log">
+                <!-- Battle messages appear here -->
+                <p id="log-text">Loading Pokémon...</p>
+            </div>
+            <!-- 4 move buttons - text updated by JS with real move names -->
+            <div id="move-buttons">
+                <button class="move-btn" id="move1">Move 1</button>
+                <button class="move-btn" id="move2">Move 2</button>
+                <button class="move-btn" id="move3">Move 3</button>
+                <button class="move-btn" id="move4">Move 4</button>
+                <button id="run-btn">RUN</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script tag at the bottom so all HTML loads before JS runs -->
+    <script src="pokemon.js"></script>
+
+    
+
+</body>
+</html>
