@@ -209,6 +209,7 @@ function displayPokemon(){
     document.getElementById("enemy-type").textContent = `Type: ${enemyPokemon.type}`;
     document.getElementById("enemy-hp-text").textContent = `HP: ${enemyPokemon.hp}/${enemyPokemon.maxHp}`;
     document.getElementById("enemy-img").src = enemyPokemon.sprite;
+    document.getElementById("enemy-stats").textContent = `ATK: ${enemyPokemon.attack} | DEF: ${enemyPokemon.defense} | SPD: ${enemyPokemon.speed}`;
 
 
      // Player
@@ -216,6 +217,7 @@ function displayPokemon(){
     document.getElementById("player-type").textContent = `Type: ${playerPokemon.type}`;
     document.getElementById("player-hp-text").textContent = `HP: ${playerPokemon.hp}/${playerPokemon.maxHp}`;
     document.getElementById("player-img").src = playerPokemon.backSprite;
+    document.getElementById("player-stats").textContent = `ATK: ${playerPokemon.attack} | DEF: ${playerPokemon.defense} | SPD: ${playerPokemon.speed}`;
 
     // Move buttons
     playerMoves = playerPokemon.moves;
@@ -305,7 +307,7 @@ document.getElementById("run-btn").addEventListener("click", () =>{
     const escaped = Math.random() < 0.5;
 
     if(escaped){
-        log("You escaped!!!!(such a loser :d)")
+        log("You escaped!!!!(such a loser :dddd)")
         battleOver = true;
         setButtonsDisabled(true);
         document.getElementById("run-btn").disabled = true;

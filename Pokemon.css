@@ -9,7 +9,6 @@
 /* Page background */
 body {
     background-color: #1a1a2e;;
-    /* Dark blue background */
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -23,29 +22,11 @@ body {
     width: 400px;
     margin-bottom: 20px;
 }
-#ash{
-    position: absolute;
-    top: 170px;
-    left: 100px;
-    width: 300px;
-}
 
-#pikachu{
-    position: absolute;
-    top: 170px;
-    right: 100px;
-    width: 300px;
-}
-#charmander{
-    position: absolute;
-    top: 500px;
-    right: 100px;
-    width: 300px;
-}
 
 /* Main battle screen */
 #battle-screen {
-    width: 600px;
+    width: 700px;
     border: 4px solid #f0c030;
     /* Yellow border like Pokemon */
     background-color: #c8e8c8;
@@ -60,8 +41,9 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    padding: 30px;
     background-color: #e8f8e8;
+    min-height: 170px;
 }
 
 /* Player area - middle of screen */
@@ -69,28 +51,30 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    padding: 30px;
     background-color: #d0f0d0;
+    min-height: 170px; 
 }
 
 /* Pokemon images */
 #enemy-img {
-    width: 140px;
-    image-rendering: pixelated;
+    width: 180px;
+   image-rendering: pixelated;
 }
 
 #player-img {
-    width: 160px;
+    width: 200px;
     image-rendering: pixelated;
 }
 
 /* HP bar container - grey background */
 .hp-bar-container {
-    width: 150px;
+    width: 200px;
     height: 10px;
     background-color: #888;
     border-radius: 5px;
     margin: 5px 0;
+    
 }
 
 /* HP bar - green fill */
@@ -163,7 +147,7 @@ p {
 
 /* Selection screen */
 #selection-screen {
-    width: 600px;
+    width: 800px;
     background-color: #16213e;
     border: 4px solid #f0c030;
     border-radius: 10px;
@@ -306,11 +290,11 @@ p {
 
     /* Pokemon pics */
     #enemy-img {
-        width: 80px;
+        width: 180px;
     }
 
     #player-img {
-        width: 100px;
+        width: 200px;
     }
 
     /* Battle panel  */
@@ -336,7 +320,6 @@ p {
         width: 150px;
     }
     
-
 
     /* Selection screen */
     #selection-screen {
