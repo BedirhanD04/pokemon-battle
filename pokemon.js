@@ -1,3 +1,68 @@
+//Create audio context for sound for sound effects
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+//Play a hit sound effect
+function playHitSound(){
+    const oscillator = audioCtx.createOscillator();
+    const gainNode = audioCtx.createGain();
+
+    oscillator.connect(gainNode);
+    gainNode.connect(audioCtx.destination);
+
+    oscillator.type = "square";
+    oscillator.frequency.setValueAtTime(440, audioCtx.currentTime);
+    oscillator.frequency.exponentialRampToValueAtTime(100, audioCtx.currentTime + 0.3);
+
+    gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
+    gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+
+    oscillator.start(audioCtx.currentTime);
+    oscillator.stop(audioCtx.currentTime + 0.3);
+}
+
+///Play a faint sound effect
+function playFaintSound(){
+    const oscillator = audioCtx.createOscillator();
+    const gainNode = audioCtx.createGain();
+
+    oscillator.connect(gainNode);
+    gainNode.connect(audioCtx.destination);
+
+    oscillator.type = "sine";
+    oscillator.frequency.setValueAtTime(300, audioCtx.currentTime);
+    oscillator.frequency.exponentialRampToValueAtTime(50, audioCtx.currentTime + 2.5);
+
+    
+    gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
+    
+    gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 2.5);
+
+    oscillator.start(audioCtx.currentTime);
+    oscillator.stop(audioCtx.currentTime + 2.5);
+}
+
+// Show confetti animation when player wins
+function showConfetti() {
+    const colors = ["#f0c030", "#ff4444", "#4a90d9", "#00cc00", "#ff69b4"];
+    
+    for (let i = 0; i < 80; i++) {
+        const confetti = document.createElement("div");
+        confetti.classList.add("confetti");
+        
+        // Random position, color and speed
+        confetti.style.left = Math.random() * 100 + "vw";
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.animationDuration = (Math.random() * 2 + 1) + "s";
+        confetti.style.animationDelay = (Math.random() * 1) + "s";
+        confetti.style.width = (Math.random() * 10 + 5) + "px";
+        confetti.style.height = (Math.random() * 10 + 5) + "px";
+        
+        document.body.appendChild(confetti);
+        
+        // Remove confetti after animation
+        setTimeout(() => confetti.remove(), 3000);
+    }
+}
 
 // Variables to store Pokemon data during the battle
 let playerPokemon = null;
@@ -143,6 +208,8 @@ function enemyAttack(){
     UpdateHpBar("player");
     log(`${enemyPokemon.name.toUpperCase()} used ${move.name}! It dealt ${damage} damage!`);
 
+    playHitSound();
+
     // Shake player when hit
     const playerImg = document.getElementById("player-img");
     playerImg.classList.add("shake");
@@ -150,13 +217,14 @@ function enemyAttack(){
 
     // Check if player lost
     if (playerPokemon.hp <= 0){
+        playFaintSound();
         setTimeout(() => {
             log(`${playerPokemon.name.toUpperCase()} fainted! ${enemyPokemon.name.toUpperCase()} wins!`);
             battleOver = true;
             setButtonsDisabled(true);
             document.getElementById("play-again-btn").style.display = "block";
-
         }, 1000);
+
         return;
     }
 
@@ -179,6 +247,8 @@ function playerAttack(moveIndex){
     UpdateHpBar("enemy");
     log(`${playerPokemon.name.toUpperCase()} used ${move.name}! It dealt ${damage} damage!`);
 
+    playHitSound();
+
     // Shake enemy when hit
     const enemyImg = document.getElementById("enemy-img");
     enemyImg.classList.add("shake");
@@ -190,7 +260,10 @@ function playerAttack(moveIndex){
 
     // Check if enemy lost
     if (enemyPokemon.hp <= 0) {
+      
         setTimeout(() => {
+              playFaintSound();
+        showConfetti();
             log(`${enemyPokemon.name.toUpperCase()} fainted! ${playerPokemon.name.toUpperCase()} wins!`);
             battleOver = true;
             document.getElementById("play-again-btn").style.display = "block";

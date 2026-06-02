@@ -334,3 +334,18 @@ p {
         gap: 15px;
     }
 }
+
+/* Confetti particle */
+.confetti{
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    animation: confettiFall linear forwards;
+    z-index: 999;
+}
+
+@keyframes confettiFall{
+    0%{transform: translateY(-100px) rotate(0deg); opacity: 1;}
+    100%{transform: translateY(100vh) rotate(720deg); opacity: 0;}
+}
